@@ -4,6 +4,7 @@ import authRoutes from "./routes/authRoutes";
 import appRoutes from "./routes/appRoutes";
 import AppError from "./utils/appError";
 import globalErrorHandler from "./controllers/globalErrorHandler";
+import io from "./server";
 
 const app = express();
 
@@ -18,6 +19,10 @@ app.use(
 
 app.use(express.json());
 
+app.use("/", (req, res, next) => {
+  req.io = io;
+  next();
+});
 app.use("/api/v1", authRoutes);
 app.use("/api/v1/app", appRoutes);
 app.use((req, res, next) => {

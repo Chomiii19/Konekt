@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import catchASync from "../utils/catchAsync";
+import catchAsync from "../utils/catchAsync";
 import AppError from "../utils/appError";
 import User from "../models/userModel";
 import { IUser } from "../@types/interfaces";
@@ -16,7 +16,7 @@ const createSendToken = (user: IUser, statusCode: number, res: Response) => {
   });
 };
 
-const login = catchASync(
+const login = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
 
@@ -36,7 +36,7 @@ const login = catchASync(
   }
 );
 
-const signup = catchASync(
+const signup = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { fullName, username, email, password, phoneNumber } = req.body;
 
@@ -58,7 +58,7 @@ const signup = catchASync(
 );
 
 // Verify Email by inputting code sent through user's email
-const emailVerification = catchASync(
+const emailVerification = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { verificationCode } = req.body;
     const user = req.user;

@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import catchASync from "../utils/catchAsync";
+import catchAsync from "../utils/catchAsync";
 import AppError from "../utils/appError";
 import User from "../models/userModel";
 
-const locationSharing = catchASync(
+const locationSharing = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { enableLocationSharing } = req.body;
 
@@ -27,4 +27,8 @@ const locationSharing = catchASync(
   }
 );
 
-export { locationSharing };
+const updateCurrentLocation = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {}
+);
+
+export { locationSharing, updateCurrentLocation };

@@ -6,10 +6,10 @@ type PromiseFunction = (
   next: NextFunction
 ) => Promise<any>;
 
-const catchASync = (fn: PromiseFunction) => {
+const catchAsync = (fn: PromiseFunction) => {
   return (req: Request, res: Response, next: NextFunction) => {
     fn(req, res, next).catch((err: Error) => next(err));
   };
 };
 
-export default catchASync;
+export default catchAsync;

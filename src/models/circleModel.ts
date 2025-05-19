@@ -6,7 +6,7 @@ const CircleMemberSchema = new mongoose.Schema(
     user_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
     role: {
       type: String,
-      enum: ["admin", "member", "viewer"],
+      enum: ["admin", "member"],
       default: "member",
     },
   },
