@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import userVerification from "./template/sendCodeTemplate";
 import { IUser } from "../@types/interfaces";
 
-const sendCodeVerification = async function (receiver: IUser) {
+const sendEmailVerification = async function (receiver: IUser) {
   try {
     const email = process.env.EMAIL;
     const password = process.env.EMAIL_PASSWORD;
@@ -36,4 +36,4 @@ const sendCodeVerification = async function (receiver: IUser) {
   }
 };
 
-export default sendCodeVerification;
+export default sendEmailVerification;
