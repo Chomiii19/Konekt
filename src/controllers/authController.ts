@@ -57,12 +57,22 @@ const signup = catchASync(
   }
 );
 
-const verify = catchASync(
-  async (req: Request, res: Response, next: NextFunction) => {}
+// Verify Email by inputting code sent through user's email
+const emailVerification = catchASync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { verificationCode } = req.body;
+    const user = req.user;
+
+    if (!verificationCode)
+      return next(new AppError("Invalid empty field", 400));
+
+    if (user.verificationCode !== verificationCode)
+      return next(
+        new AppError("Incorrect verification code. Please try again.", 400)
+      );
+
+    res.status(200).json({ status: "Success" });
+  }
 );
 
-const logout = catchASync(
-  async (req: Request, res: Response, next: NextFunction) => {}
-);
-
-export { login, signup, verify, logout };
+export { login, signup, emailVerification };
