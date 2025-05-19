@@ -59,9 +59,20 @@ interface ICircleMember {
 interface ICircle {
   _id: string;
   name: string;
-  created_by: Schema.Types.ObjectId;
+  created_by: string;
   members: ICircleMember[];
   created_at: Date;
+}
+
+interface IFriend {
+  _id: string;
+  requester: Schema.Types.ObjectId | IUser;
+  recipient: Schema.Types.ObjectId | IUser;
+  status: "pending" | "accepted";
+  share_location: {
+    requester_to_recipient: boolean;
+    recipient_to_requester: boolean;
+  };
 }
 
 export {
@@ -72,4 +83,5 @@ export {
   ILocationVisibilitySchedule,
   ICircle,
   ICircleMember,
+  IFriend,
 };
