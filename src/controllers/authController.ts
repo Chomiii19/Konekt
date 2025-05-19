@@ -18,12 +18,13 @@ const login = catchASync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { email, password } = req.body;
 
-    if (!email || !password) next(new AppError("Invalid empty fields", 400));
+    if (!email || !password)
+      return next(new AppError("Invalid empty fields", 400));
 
     const user = await User.findOne({ email }).select("+password");
 
     if (!user || !(await user.comparePassword(password)))
-      next(new AppError("Invalid credentials. Please try again.", 400));
+      return next(new AppError("Invalid credentials. Please try again.", 400));
 
     createSendToken(user, 200, res);
   }

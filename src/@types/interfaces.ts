@@ -32,6 +32,7 @@ interface IUser {
   username: string;
   email: string;
   isVerified: boolean;
+  verificationCode: number;
   password: string;
   phoneNumber: string;
   profile_picture_url: string;
